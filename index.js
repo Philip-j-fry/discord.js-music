@@ -1,3 +1,5 @@
+const Discord = require("discord.js")
+const client = new Discord.Client();
 const YoutubeDL = require('youtube-dl');
 const ytdl = require('ytdl-core');
 
@@ -30,6 +32,7 @@ module.exports = function (client, options) {
 
 	// Catch message events.
 	client.on('message', msg => {
+		if (message.channel.type === 'dm') return; // Since voice channels dont exist in dms would crash the bot if it was used in dms without this
 		const message = msg.content.trim();
 
 		// Check if the message is a command.
