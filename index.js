@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client();
 const YoutubeDL = require('youtube-dl');
+const stream = require('youtube-audio-stream')
 const ytdl = require('ytdl-core');
 
 /**
@@ -376,7 +377,7 @@ module.exports = function (client, options) {
 
 			// Play the video.
 			msg.channel.send(wrap('Now Playing: ' + video.title)).then(() => {
-				let dispatcher = connection.playStream(ytdl(video.webpage_url, {filter: 'audioonly'}), {seek: 0, volume: (DEFAULT_VOLUME/100)});
+				let dispatcher = connection.playStream(stream(video.webpage_url));
 
 				connection.on('error', (error) => {
 					// Skip to the next song.
