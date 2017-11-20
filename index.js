@@ -32,7 +32,7 @@ module.exports = function (client, options) {
 	let queues = {};
 
 	// Catch message events.
-	client.on('message', msg => {
+	client.on('message', async (msg) => {
 		if (message.channel.type === 'dm') return; // Since voice channels dont exist in dms would crash the bot if it was used in dms without this
 		const message = msg.content.trim();
 
